@@ -41,7 +41,7 @@ public class Menu implements ActionListener {
         }
 
         if (e.getSource().equals(button2v2)){
-
+            GameFrameSlither fs = new GameFrameSlither();
             frame.dispose();
         }
     }

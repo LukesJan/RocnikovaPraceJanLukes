@@ -14,11 +14,16 @@ public class Panel extends JPanel implements ActionListener {
     static final int delay = 120;
     final int x[] = new int[unit];
     final int y[] = new int[unit];
+    final int h[] = new int[unit];
+    final int v[] = new int[unit];
     private int bodyParts = 1;
     private int applesEaten;
+    private int bodyParts2 = 1;
+    private int applesEaten2;
     private int appleX;
     private int appleY;
     private String direction = "";
+    private String direction2 = "";
     boolean running = false;
     private boolean slither;
     private boolean pause;
@@ -34,13 +39,13 @@ public class Panel extends JPanel implements ActionListener {
         timer.start();
         startGame();
     }
-
     public void setSlither(boolean slither) {
         this.slither = slither;
     }
 
     public void startGame() {
         spawn();
+        spawn2();
         newApple();
         running = true;
         pause = false;
@@ -68,6 +73,17 @@ public class Panel extends JPanel implements ActionListener {
                     g.fillRect(x[i], y[i], unitSize, unitSize);
                 }
             }
+            if(slither) {
+                for (int y = 0; y < bodyParts2; y++) {
+                    if (y == 0) {
+                        g.setColor(Color.blue);
+                        g.fillRect(h[y], v[y], unitSize, unitSize);
+                    } else {
+                        g.setColor(Color.blue);
+                        g.fillRect(h[y], v[y], unitSize, unitSize);
+                    }
+                }
+            }
         } else if (applesEaten == 24 * 24 - 1) {
             checkWin(g);
         } else {
@@ -79,9 +95,24 @@ public class Panel extends JPanel implements ActionListener {
         x[0] = r.nextInt((widthP / unitSize)) * unitSize;
         y[0] = r.nextInt((heightP / unitSize)) * unitSize;
     }
+
+    public void spawn2() {
+        h[0] = r.nextInt((widthP / unitSize)) * unitSize;
+        v[0] = r.nextInt((heightP / unitSize)) * unitSize;
+    }
+
     public void newApple() {
         appleX = r.nextInt((widthP / unitSize)) * unitSize;
         appleY = r.nextInt((heightP / unitSize)) * unitSize;
+    }
+    public void paused(){
+        pause =! pause;
+        if (pause){
+            timer.stop();
+        }else{
+            timer.start();
+        }
+        repaint();
     }
     public void move() {
         for (int i = bodyParts; i > 0; i--) {
@@ -101,12 +132,42 @@ public class Panel extends JPanel implements ActionListener {
             case "L":
                 x[0] = x[0] - unitSize;
                 break;
+            case "P", "p":
+                paused();
+        }
+    }
+    public void move2() {
+        for (int y = bodyParts2; y > 0; y--) {
+            h[y] = h[y - 1];
+            v[y] = v[y - 1];
+        }
+
+        switch (direction2) {
+            case "W", "w":
+                v[0] = v[0] - unitSize;
+                break;
+            case "S" , "s":
+                v[0] = v[0] + unitSize;
+                break;
+            case "D" , "d":
+                h[0] = h[0] + unitSize;
+                break;
+            case "A" , "a":
+                h[0] = h[0] - unitSize;
+                break;
+            case "P", "p":
+                paused();
         }
     }
     public void checkApple() {
         if ((x[0] == appleX && y[0] == appleY)) {
             bodyParts++;
             applesEaten++;
+            newApple();
+        }
+        if ((h[0] == appleX && v[0] == appleY)) {
+            bodyParts2++;
+            applesEaten2++;
             newApple();
         }
     }
@@ -136,6 +197,46 @@ public class Panel extends JPanel implements ActionListener {
         }
 
     }
+
+    public void checkCollisions2() {
+        for (int y = bodyParts2; y > 0; y--) {
+            if ((v[0] == v[y] && h[0] == h[y])) {
+                running= false;
+            }
+        }
+        if (h[0] < 0) {
+            running = false;
+        }
+        if (h[0] >= widthP) {
+            running = false;
+        }
+        if (v[0] >= heightP) {
+            running = false;
+        }
+        if (v[0] < 0) {
+            running = false;
+        }
+        if (!running) {
+            timer.stop();
+            if (slither){
+            }
+        }
+    }
+    public void checkCollisions3() {
+        for (int z = bodyParts2+bodyParts; z > 0; z--) {
+            if ((h[0] == x[z] && v[0] == y[z])) {
+                running = false;
+            }
+            if ((x[0] == h[z] && y[0] == v[z])) {
+                running = false;
+            }
+        }
+        if (!running) {
+            timer.stop();
+        }
+    }
+
+
     public void gameOver(Graphics g){
         g.setColor(Color.red);
         g.setFont(new Font("Ink Free",Font.BOLD,75));
@@ -158,6 +259,14 @@ public class Panel extends JPanel implements ActionListener {
             if (!direction.equalsIgnoreCase("")) {
                 checkCollisions();
             }
+            if(slither) {
+                move2();
+                if (!direction2.equalsIgnoreCase("")) {
+                    checkCollisions2();
+                }
+                checkCollisions3();
+            }
+
         }
         repaint();
     }
@@ -185,9 +294,31 @@ public class Panel extends JPanel implements ActionListener {
                         direction = "DD";
                         break;
                     }
+                case KeyEvent.VK_A:
+                    if (!direction2.equalsIgnoreCase("D")){
+                        direction2 = "A";
+                        break;
+                    }
+                case KeyEvent.VK_D:
+                    if (!direction2.equalsIgnoreCase("A")){
+                        direction2 = "D";
+                        break;
+                    }
+                case KeyEvent.VK_W:
+                    if (!direction2.equalsIgnoreCase("S")){
+                        direction2 = "W";
+                        break;
+                    }
+                case KeyEvent.VK_S:
+                    if (!direction2.equalsIgnoreCase("W")){
+                        direction2 = "S";
+                        break;
+                    }
+                case KeyEvent.VK_P:
+                    paused();
+                    break;
             }
         }
     }
 }
-
 

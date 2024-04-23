@@ -13,7 +13,6 @@ public class GameFrameSlither extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         panel2.setSlither(true);
-
     }
 }
 
