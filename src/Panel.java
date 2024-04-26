@@ -22,6 +22,12 @@ public class Panel extends JPanel implements ActionListener {
     private int applesEaten2;
     private int appleX;
     private int appleY;
+    private int red;
+    private int green;
+    private int blue;
+    private int redSecond;
+    private int greenSecond;
+    private int blueSecond;
     private String direction = "";
     private String direction2 = "";
     boolean running = false;
@@ -29,6 +35,53 @@ public class Panel extends JPanel implements ActionListener {
     private boolean pause;
     Timer timer;
     Random r;
+    public void setRed(int red) {
+        if (red < 0 || red > 255) {
+            this.red = 120;
+        } else {
+            this.red = red;
+        }
+    }
+
+    public void setBlue(int blue) {
+        if (blue < 0 || blue > 255) {
+            this.blue = 120;
+        } else {
+            this.blue = blue;
+        }
+    }
+
+    public void setGreen(int green) {
+        if (green < 0 || green > 255) {
+            this.green = 120;
+        } else {
+            this.green = green;
+        }
+    }
+
+    public void setRedSecond(int redSecond) {
+        if (redSecond < 0 || redSecond > 255) {
+            this.redSecond = 120;
+        } else {
+            this.redSecond = redSecond;
+        }
+    }
+
+    public void setBlueSecond(int blueSecond) {
+        if (blueSecond < 0 || blueSecond > 255) {
+            this.blueSecond = 120;
+        } else {
+            this.blueSecond = blueSecond;
+        }
+    }
+
+    public void setGreenSecond(int greenSecond) {
+        if (greenSecond < 0 || greenSecond > 255) {
+            this.greenSecond = 120;
+        } else {
+            this.greenSecond = greenSecond;
+        }
+    }
     public Panel() {
         r = new Random();
         this.setPreferredSize(new Dimension(widthP, heightP));
@@ -69,7 +122,7 @@ public class Panel extends JPanel implements ActionListener {
                     g.setColor(Color.green);
                     g.fillRect(x[i], y[i], unitSize, unitSize);
                 } else {
-                    g.setColor(Color.green);
+                    g.setColor(new Color(red, green, blue));
                     g.fillRect(x[i], y[i], unitSize, unitSize);
                 }
             }
@@ -79,7 +132,7 @@ public class Panel extends JPanel implements ActionListener {
                         g.setColor(Color.blue);
                         g.fillRect(h[y], v[y], unitSize, unitSize);
                     } else {
-                        g.setColor(Color.blue);
+                        g.setColor(new Color(redSecond, greenSecond, blueSecond));
                         g.fillRect(h[y], v[y], unitSize, unitSize);
                     }
                 }

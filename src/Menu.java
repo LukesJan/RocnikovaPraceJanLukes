@@ -35,13 +35,11 @@ public class Menu implements ActionListener {
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(start)){
-            GameFrame f = new GameFrame();
+            MenuSnake mh = new MenuSnake();
             frame.dispose();
-
         }
-
         if (e.getSource().equals(button2v2)){
-            GameFrameSlither fs = new GameFrameSlither();
+            MenuSlither m2 = new MenuSlither();
             frame.dispose();
         }
     }
