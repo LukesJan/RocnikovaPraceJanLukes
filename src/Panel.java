@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Panel extends JPanel implements ActionListener {
+    RightFrame bc = new RightFrame();
+    LeftFrame lv = new LeftFrame();
     static final int widthP = 600;
     static final int heightP = 600;
     static final int unitSize = 25;
@@ -216,11 +218,14 @@ public class Panel extends JPanel implements ActionListener {
         if ((x[0] == appleX && y[0] == appleY)) {
             bodyParts++;
             applesEaten++;
+            bc.setScore(applesEaten);
+
             newApple();
         }
         if ((h[0] == appleX && v[0] == appleY)) {
             bodyParts2++;
             applesEaten2++;
+            lv.setScore2(applesEaten2);
             newApple();
         }
     }

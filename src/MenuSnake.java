@@ -65,9 +65,10 @@ public class MenuSnake implements ActionListener {
             frame.dispose();
         }
         if (e.getSource().equals(start)) {
-            String nameP = nameField.getText();
-            System.out.println(nameP);
             GameFrame f = new GameFrame();
+            String nameP = nameField.getText();
+            f.panel.bc.setJmeno(nameP);
+            f.panel.lv.setVisible(false);
             if (!blue.getText().matches("\\d{3}")){
                 f.panel.setBlue(120);
             } else {
