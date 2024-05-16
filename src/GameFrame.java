@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements ActionListener {
     Panel panel = new Panel();
 
     GameFrame() {
@@ -14,6 +14,18 @@ public class GameFrame extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         panel.setSlither(false);
+        panel.button.addActionListener(this);
+    }
 
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(panel.button)) {
+            panel.bc.dispose();
+            panel.rv.dispose();
+            panel.lv.dispose();
+            this.dispose();
+            Menu menu = new Menu();
+        }
     }
 }

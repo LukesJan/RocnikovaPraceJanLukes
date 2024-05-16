@@ -7,8 +7,11 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Panel extends JPanel implements ActionListener {
+    ScoreBoard sc = new ScoreBoard();
     RightFrame bc = new RightFrame();
     LeftFrame lv = new LeftFrame();
+    Record rv = new Record();
+    FileWriterR fr = new FileWriterR();
     static final int widthP = 600;
     static final int heightP = 600;
     static final int unitSize = 25;
@@ -37,6 +40,20 @@ public class Panel extends JPanel implements ActionListener {
     private boolean pause;
     Timer timer;
     Random r;
+    JButton button = new JButton();
+    public Panel() {
+        r = new Random();
+        button.setBounds(200,0,200,100);
+        this.setPreferredSize(new Dimension(widthP, heightP));
+        this.setBackground(Color.black);
+        this.setFocusable(true);
+        this.addKeyListener(new MyKeyAdapter());
+        timer = new Timer(delay, this);
+        timer.start();
+        startGame();
+        sc.frame.setVisible(false);
+    }
+
     public void setRed(int red) {
         if (red < 0 || red > 255) {
             this.red = 120;
@@ -84,16 +101,7 @@ public class Panel extends JPanel implements ActionListener {
             this.greenSecond = greenSecond;
         }
     }
-    public Panel() {
-        r = new Random();
-        this.setPreferredSize(new Dimension(widthP, heightP));
-        this.setBackground(Color.black);
-        this.setFocusable(true);
-        this.addKeyListener(new MyKeyAdapter());
-        timer = new Timer(delay, this);
-        timer.start();
-        startGame();
-    }
+
     public void setSlither(boolean slither) {
         this.slither = slither;
     }
@@ -219,13 +227,12 @@ public class Panel extends JPanel implements ActionListener {
             bodyParts++;
             applesEaten++;
             bc.setScore(applesEaten);
-
+            lv.setScore2(applesEaten2);
             newApple();
         }
         if ((h[0] == appleX && v[0] == appleY)) {
             bodyParts2++;
             applesEaten2++;
-            lv.setScore2(applesEaten2);
             newApple();
         }
     }
@@ -251,6 +258,7 @@ public class Panel extends JPanel implements ActionListener {
         if (!running) {
             timer.stop();
             if (slither){
+                fr.write1v1(2);
             }
         }
 
@@ -277,6 +285,7 @@ public class Panel extends JPanel implements ActionListener {
         if (!running) {
             timer.stop();
             if (slither){
+                fr.write1v1(1);
             }
         }
     }
@@ -284,9 +293,11 @@ public class Panel extends JPanel implements ActionListener {
         for (int z = bodyParts2+bodyParts; z > 0; z--) {
             if ((h[0] == x[z] && v[0] == y[z])) {
                 running = false;
+                fr.write1v1(2);
             }
             if ((x[0] == h[z] && y[0] == v[z])) {
                 running = false;
+                fr.write1v1(1);
             }
         }
         if (!running) {
@@ -300,12 +311,15 @@ public class Panel extends JPanel implements ActionListener {
         g.setFont(new Font("Ink Free",Font.BOLD,75));
         FontMetrics met = getFontMetrics(g.getFont());
         g.drawString("Game Over", (widthP - met.stringWidth("Game Over"))/2, heightP /2);
+        fr.writeScore(applesEaten);
+        this.add(button);
     }
     public void checkWin(Graphics g){
         g.setColor(Color.red);
         g.setFont(new Font("Ink Free",Font.BOLD,75));
         FontMetrics met = getFontMetrics(g.getFont());
         g.drawString("You Won", (widthP - met.stringWidth("You Won"))/2, heightP /2);
+        this.add(button);
     }
 
 

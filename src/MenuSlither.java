@@ -86,6 +86,7 @@ public class MenuSlither implements ActionListener {
             String names2 = name2.getText();
             f.panel2.bc.setJmeno(names);
             f.panel2.lv.setJmeno2(names2);
+            f.panel2.rv.setVisible(false);
             if (!blue.getText().matches("\\d{3}")){
                 f.panel2.setBlue(120);
             } else {

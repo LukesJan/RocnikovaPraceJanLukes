@@ -9,14 +9,22 @@ public class Menu implements ActionListener {
 
     JFrame frame = new JFrame();
     JButton start = new JButton("Snake");
+    JButton buttonSlither = new JButton("Score Slither");
+    JButton buttonBoard = new JButton("Score Boards");
     JButton button2v2 = new JButton("Slither.io");
     public Menu() {
 
         start.addActionListener(this);
-        start.setBounds(240,200,120,60);
+        start.setBounds(240,75,120,60);
+
+        buttonSlither.addActionListener(this);
+        buttonSlither.setBounds(240,150,120,60);
+
+        buttonBoard.addActionListener(this);
+        buttonBoard.setBounds(240,250,120,60);
 
         button2v2.addActionListener(this);
-        button2v2.setBounds(240,280,120,60);
+        button2v2.setBounds(240,350,120,60);
 
 
         frame.setLocationRelativeTo(null);
@@ -28,7 +36,9 @@ public class Menu implements ActionListener {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.add(start);
+        frame.add(buttonBoard);
         frame.add(button2v2);
+        frame.add(buttonSlither);
         frame.setLocation(500,300);
 
 
@@ -37,6 +47,15 @@ public class Menu implements ActionListener {
         if (e.getSource().equals(start)){
             MenuSnake mh = new MenuSnake();
             frame.dispose();
+
+        }
+        if (e.getSource().equals(buttonSlither)){
+            ScoreSlither sl = new ScoreSlither();
+            frame.dispose();
+        }
+        if (e.getSource().equals(buttonBoard)){
+            ScoreBoard scoreBoard = new ScoreBoard();
+            frame.dispose();
         }
         if (e.getSource().equals(button2v2)){
             MenuSlither m2 = new MenuSlither();
@@ -44,6 +63,9 @@ public class Menu implements ActionListener {
         }
     }
 }
+
+
+
 
 
 
