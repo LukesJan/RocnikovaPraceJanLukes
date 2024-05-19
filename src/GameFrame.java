@@ -1,10 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class GameFrame extends JFrame implements ActionListener {
     Panel panel = new Panel();
-
     GameFrame() {
         this.add(panel);
         this.setTitle("Snake");
@@ -16,8 +14,6 @@ public class GameFrame extends JFrame implements ActionListener {
         panel.setSlither(false);
         panel.button.addActionListener(this);
     }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(panel.button)) {

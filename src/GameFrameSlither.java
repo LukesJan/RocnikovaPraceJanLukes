@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class GameFrameSlither extends JFrame implements ActionListener {
     Panel panel2 = new Panel();
     GameFrameSlither(){

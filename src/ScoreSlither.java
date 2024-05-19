@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 
 public class ScoreSlither implements ActionListener{
     FileWriterR fr = new FileWriterR();
-    private static final int SCREEN_WIDTH = 600;
-    private static final int SCREEN_HEIGHT = 600;
+    private static final int widthP = 600;
+    private static final int heightP = 600;
     private int pointJ = fr.getAllPoints();
     private int pointD = fr.sizeAllPoints() - pointJ;
     private double percentage = (pointD+pointJ);
@@ -27,7 +27,7 @@ public class ScoreSlither implements ActionListener{
         buttonScoreboard.addActionListener(this);
         buttonScoreboard.setBounds(240,200,120,60);
         frame.setLocationRelativeTo(null);
-        frame.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+        frame.setSize(widthP, heightP);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

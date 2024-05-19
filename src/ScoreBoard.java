@@ -1,13 +1,11 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.*;
 
 public class ScoreBoard implements ActionListener {
 
-    private static final int SCREEN_WIDTH = 600;
-    private static final int SCREEN_HEIGHT = 600;
+    private static final int widthP = 600;
+    private static final int heightP = 600;
     FileWriterR fr = new FileWriterR();
     JFrame frame = new JFrame();
     JButton buttonBack = new JButton("Menu");
@@ -24,7 +22,7 @@ public class ScoreBoard implements ActionListener {
         buttonSlither.addActionListener(this);
         buttonSlither.setBounds(240,200,120,60);
         frame.setLocationRelativeTo(null);
-        frame.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+        frame.setSize(widthP, heightP);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
