@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Panel extends JPanel implements ActionListener {
+
+
     ScoreBoard sc = new ScoreBoard();
     RightFrame bc = new RightFrame();
     LeftFrame lv = new LeftFrame();
@@ -38,12 +40,26 @@ public class Panel extends JPanel implements ActionListener {
     boolean running = false;
     private boolean slither;
     private boolean pause;
+    private boolean oneWon;
     Timer timer;
     Random r;
-    JButton button = new JButton();
+    JButton menu = new JButton();
+    JButton playAgain = new JButton();
     public Panel() {
         r = new Random();
-        button.setBounds(200,0,200,100);
+        menu.setBounds(200,450,200,100);
+        menu.setText("Menu");
+        menu.setFocusable(false);
+        menu.setBorder(null);
+        menu.setBackground(new Color(0, 173, 238, 255));
+        menu.setForeground(Color.black);
+
+        playAgain.setBounds(200,250,200,100);
+        playAgain.setFocusable(false);
+        playAgain.setBorder(null);
+        playAgain.setBackground(new Color(0, 173, 238, 255));
+        playAgain.setForeground(Color.black);
+        playAgain.setText("Play again");
         this.setPreferredSize(new Dimension(widthP, heightP));
         this.setBackground(Color.black);
         this.setFocusable(true);
@@ -53,7 +69,6 @@ public class Panel extends JPanel implements ActionListener {
         startGame();
         sc.frame.setVisible(false);
     }
-
     public void setRed(int red) {
         if (red < 0 || red > 255) {
             this.red = 120;
@@ -61,7 +76,6 @@ public class Panel extends JPanel implements ActionListener {
             this.red = red;
         }
     }
-
     public void setBlue(int blue) {
         if (blue < 0 || blue > 255) {
             this.blue = 120;
@@ -69,7 +83,6 @@ public class Panel extends JPanel implements ActionListener {
             this.blue = blue;
         }
     }
-
     public void setGreen(int green) {
         if (green < 0 || green > 255) {
             this.green = 120;
@@ -77,35 +90,30 @@ public class Panel extends JPanel implements ActionListener {
             this.green = green;
         }
     }
-
     public void setRedSecond(int redSecond) {
         if (redSecond < 0 || redSecond > 255) {
-            this.redSecond = 120;
+            this.redSecond = 240;
         } else {
             this.redSecond = redSecond;
         }
     }
-
     public void setBlueSecond(int blueSecond) {
         if (blueSecond < 0 || blueSecond > 255) {
-            this.blueSecond = 120;
+            this.blueSecond = 240;
         } else {
             this.blueSecond = blueSecond;
         }
     }
-
     public void setGreenSecond(int greenSecond) {
         if (greenSecond < 0 || greenSecond > 255) {
-            this.greenSecond = 120;
+            this.greenSecond = 240;
         } else {
             this.greenSecond = greenSecond;
         }
     }
-
     public void setSlither(boolean slither) {
         this.slither = slither;
     }
-
     public void startGame() {
         spawn();
         spawn2();
@@ -147,10 +155,15 @@ public class Panel extends JPanel implements ActionListener {
                     }
                 }
             }
+
         } else if (applesEaten == 24 * 24 - 1) {
             checkWin(g);
         } else {
-            gameOver(g);
+            if (slither){
+                winnnerIs(g);
+            } if (!slither) {
+                gameOver(g);
+            }
         }
     }
 
@@ -259,6 +272,7 @@ public class Panel extends JPanel implements ActionListener {
             timer.stop();
             if (slither){
                 fr.write1v1(2);
+                oneWon = false;
             }
         }
 
@@ -286,6 +300,7 @@ public class Panel extends JPanel implements ActionListener {
             timer.stop();
             if (slither){
                 fr.write1v1(1);
+                oneWon = true;
             }
         }
     }
@@ -294,10 +309,12 @@ public class Panel extends JPanel implements ActionListener {
             if ((h[0] == x[z] && v[0] == y[z])) {
                 running = false;
                 fr.write1v1(2);
+                oneWon = false;
             }
             if ((x[0] == h[z] && y[0] == v[z])) {
                 running = false;
                 fr.write1v1(1);
+                oneWon = true;
             }
         }
         if (!running) {
@@ -307,19 +324,33 @@ public class Panel extends JPanel implements ActionListener {
 
 
     public void gameOver(Graphics g){
-        g.setColor(Color.red);
+        g.setColor(new Color(0, 173, 238, 255));
         g.setFont(new Font("Ink Free",Font.BOLD,75));
         FontMetrics met = getFontMetrics(g.getFont());
-        g.drawString("Game Over", (widthP - met.stringWidth("Game Over"))/2, heightP /2);
+        g.drawString("Game Over", (widthP - met.stringWidth("Game Over"))/2, heightP /4);
         fr.writeScore(applesEaten);
-        this.add(button);
+        this.add(menu);
+        this.add(playAgain);
     }
     public void checkWin(Graphics g){
-        g.setColor(Color.red);
+        g.setColor(new Color(0, 173, 238, 255));
         g.setFont(new Font("Ink Free",Font.BOLD,75));
         FontMetrics met = getFontMetrics(g.getFont());
-        g.drawString("You Won", (widthP - met.stringWidth("You Won"))/2, heightP /2);
-        this.add(button);
+        g.drawString("You Won", (widthP - met.stringWidth("You Won"))/2, heightP /4);
+        this.add(menu);
+        this.add(playAgain);
+    }
+    public void winnnerIs(Graphics g){
+        g.setColor(new Color(0, 173, 238, 255));
+        g.setFont(new Font("Ink Free",Font.BOLD,75));
+        FontMetrics met = getFontMetrics(g.getFont());
+        if (oneWon) {
+            g.drawString("Player1 Won", (widthP - met.stringWidth("Player1 Won")) / 2, heightP / 4);
+        } else {
+            g.drawString("Player2 Won", (widthP - met.stringWidth("Player1 Won")) / 2, heightP / 4);
+        }
+        this.add(menu);
+        this.add(playAgain);
     }
 
 

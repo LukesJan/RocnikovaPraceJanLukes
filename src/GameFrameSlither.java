@@ -12,18 +12,25 @@ public class GameFrameSlither extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         panel2.setSlither(true);
-        panel2.button.addActionListener(this);
+        panel2.menu.addActionListener(this);
+        panel2.playAgain.addActionListener(this);
+        panel2.rv.setVisible(false);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(panel2.button)){
+        if (e.getSource().equals(panel2.menu)){
             panel2.bc.dispose();
             panel2.lv.dispose();
             panel2.rv.dispose();
             this.dispose();
             Menu menu = new Menu();
         }
+        if (e.getSource().equals(panel2.playAgain)){
+            panel2.bc.dispose();
+            panel2.lv.dispose();
+            panel2.rv.dispose();
+            this.dispose();
+            GameFrameSlither p = new GameFrameSlither();
+        }
     }
 }
-
-
