@@ -37,7 +37,7 @@ public class Panel extends JPanel implements ActionListener {
     private int blueSecond;
     private String direction = "";
     private String direction2 = "";
-    boolean running = false;
+    private boolean running = false;
     private boolean slither;
     private boolean pause;
     private boolean oneWon;
@@ -70,42 +70,47 @@ public class Panel extends JPanel implements ActionListener {
         sc.frame.setVisible(false);
     }
     public void setRed(int red) {
-        if (red < 0 || red > 255) {
+        if (red <= 0 || red > 255) {
             this.red = 120;
         } else {
             this.red = red;
         }
     }
+
+    public int getRed() {
+        return red;
+    }
+
     public void setBlue(int blue) {
-        if (blue < 0 || blue > 255) {
+        if (blue <= 0 || blue > 255) {
             this.blue = 120;
         } else {
             this.blue = blue;
         }
     }
     public void setGreen(int green) {
-        if (green < 0 || green > 255) {
+        if (green <= 0 || green > 255) {
             this.green = 120;
         } else {
             this.green = green;
         }
     }
     public void setRedSecond(int redSecond) {
-        if (redSecond < 0 || redSecond > 255) {
+        if (redSecond <= 0 || redSecond > 255) {
             this.redSecond = 240;
         } else {
             this.redSecond = redSecond;
         }
     }
     public void setBlueSecond(int blueSecond) {
-        if (blueSecond < 0 || blueSecond > 255) {
+        if (blueSecond <= 0 || blueSecond > 255) {
             this.blueSecond = 240;
         } else {
             this.blueSecond = blueSecond;
         }
     }
     public void setGreenSecond(int greenSecond) {
-        if (greenSecond < 0 || greenSecond > 255) {
+        if (greenSecond <= 0 || greenSecond > 255) {
             this.greenSecond = 240;
         } else {
             this.greenSecond = greenSecond;
@@ -114,13 +119,20 @@ public class Panel extends JPanel implements ActionListener {
     public void setSlither(boolean slither) {
         this.slither = slither;
     }
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
     public void startGame() {
         spawn();
         spawn2();
         newApple();
         running = true;
         pause = false;
-
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -9,7 +9,7 @@ public class ScoreSlither implements ActionListener {
     private static final int SCREEN_HEIGHT = 600;
     private int pointJ = fr.getAllPoints();
     private int pointD = fr.sizeAllPoints() - pointJ;
-    private double percentage = (pointD + pointJ);
+    private double percentage = pointD + pointJ;
     private double percentageJ = pointJ / percentage * 100;
     private double percentageD = pointD / percentage * 100;
 
