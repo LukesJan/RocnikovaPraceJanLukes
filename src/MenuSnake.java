@@ -26,7 +26,7 @@ public class MenuSnake implements ActionListener {
         nameASK.setBounds(170, 160, 120, 40);
         nameASK.setForeground(new Color(0, 173, 238, 255));
 
-        nameField.setBounds(320, 160, 100, 40);
+        nameField.setBounds(300, 160, 120, 40);
         nameField.setBorder(null);
         nameField.setForeground(new Color(0, 173, 238, 255));
         nameField.setBackground(Color.black);
@@ -151,6 +151,9 @@ public class MenuSnake implements ActionListener {
             }
             frame.dispose();
         }
+        /**
+         * in this metod above get rgb but if its invalid then we set it to default(120)
+         */
     }
 
 }

@@ -30,7 +30,7 @@ public class GameFrameSlither extends JFrame implements ActionListener {
             panel2.lv.dispose();
             panel2.rv.dispose();
             this.dispose();
-            GameFrameSlither p = new GameFrameSlither();
+            MenuSlither p = new MenuSlither();
         }
     }
 }

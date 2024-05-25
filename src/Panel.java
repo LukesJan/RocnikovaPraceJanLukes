@@ -8,8 +8,6 @@ import java.util.Random;
 
 public class Panel extends JPanel implements ActionListener {
 
-
-    ScoreBoard sc = new ScoreBoard();
     RightFrame bc = new RightFrame();
     LeftFrame lv = new LeftFrame();
     Record rv = new Record();
@@ -67,7 +65,6 @@ public class Panel extends JPanel implements ActionListener {
         timer = new Timer(delay, this);
         timer.start();
         startGame();
-        sc.frame.setVisible(false);
     }
     public void setRed(int red) {
         if (red <= 0 || red > 255) {
@@ -127,6 +124,10 @@ public class Panel extends JPanel implements ActionListener {
     public boolean isPause() {
         return pause;
     }
+
+    /**
+     * in this metod we startGame by spawning and running setting on true
+     */
     public void startGame() {
         spawn();
         spawn2();
@@ -134,10 +135,16 @@ public class Panel extends JPanel implements ActionListener {
         running = true;
         pause = false;
     }
+    /**
+     * in this metod we paint components
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
+    /**
+     * in this metod we set up game board, set color of snake/snakes and apple and set up endscreen
+     */
     public void draw(Graphics g) {
         if (running) {
             for (int i = 0; i < heightP / unitSize; i++) {
@@ -179,20 +186,30 @@ public class Panel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * in this metod we spawn first snake
+     */
     public void spawn() {
         x[0] = r.nextInt((widthP / unitSize)) * unitSize;
         y[0] = r.nextInt((heightP / unitSize)) * unitSize;
     }
-
+    /**
+     * in this metod we spawn second snake
+     */
     public void spawn2() {
         h[0] = r.nextInt((widthP / unitSize)) * unitSize;
         v[0] = r.nextInt((heightP / unitSize)) * unitSize;
     }
-
+    /**
+     * in this metod we spawn apple
+     */
     public void newApple() {
         appleX = r.nextInt((widthP / unitSize)) * unitSize;
         appleY = r.nextInt((heightP / unitSize)) * unitSize;
     }
+    /**
+     * in this metod we pause the game and run it back, we use timer stop
+     */
     public void paused(){
         pause =! pause;
         if (pause){
@@ -202,6 +219,9 @@ public class Panel extends JPanel implements ActionListener {
         }
         repaint();
     }
+    /**
+     * in this metod we do movement of first snake, for loop and switch
+     */
     public void move() {
         for (int i = bodyParts; i > 0; i--) {
             x[i] = x[i - 1];
@@ -224,6 +244,9 @@ public class Panel extends JPanel implements ActionListener {
                 paused();
         }
     }
+    /**
+     * in this metod we do movement of second snake, for loop and switch
+     */
     public void move2() {
         for (int y = bodyParts2; y > 0; y--) {
             h[y] = h[y - 1];
@@ -247,6 +270,9 @@ public class Panel extends JPanel implements ActionListener {
                 paused();
         }
     }
+    /**
+     * in this metod we check if we picked apple, if yes then we do body++, apple++
+     */
     public void checkApple() {
         if ((x[0] == appleX && y[0] == appleY)) {
             bodyParts++;
@@ -261,7 +287,10 @@ public class Panel extends JPanel implements ActionListener {
             newApple();
         }
     }
-
+    /**
+     * in this metod we do collisions for the first snake if he run in to the wall/void
+     * if its in mode slither then we write 2 in 1v1Rate
+     */
     public void checkCollisions() {
         for (int i = bodyParts; i > 0 ; i--) {
             if ((x[0] == x[i] && y[0] == y[i])){
@@ -289,7 +318,10 @@ public class Panel extends JPanel implements ActionListener {
         }
 
     }
-
+    /**
+     * in this metod we do collisions for the second snake if he run in to the wall/void
+     * we write 1 in 1v1Rate
+     */
     public void checkCollisions2() {
         for (int y = bodyParts2; y > 0; y--) {
             if ((v[0] == v[y] && h[0] == h[y])) {
@@ -316,6 +348,10 @@ public class Panel extends JPanel implements ActionListener {
             }
         }
     }
+    /**
+     * in this metod we do collisions for the snakes if they run into each other
+     * we write 1 or 2 decided on who won
+     */
     public void checkCollisions3() {
         for (int z = bodyParts2+bodyParts; z > 0; z--) {
             if ((h[0] == x[z] && v[0] == y[z])) {
@@ -334,7 +370,9 @@ public class Panel extends JPanel implements ActionListener {
         }
     }
 
-
+    /**
+     * in this metod we do gameOver endScreen
+     */
     public void gameOver(Graphics g){
         g.setColor(new Color(0, 173, 238, 255));
         g.setFont(new Font("Ink Free",Font.BOLD,75));
@@ -344,6 +382,9 @@ public class Panel extends JPanel implements ActionListener {
         this.add(menu);
         this.add(playAgain);
     }
+    /**
+     * in this metod we do you won endScreen
+     */
     public void checkWin(Graphics g){
         g.setColor(new Color(0, 173, 238, 255));
         g.setFont(new Font("Ink Free",Font.BOLD,75));
@@ -352,6 +393,9 @@ public class Panel extends JPanel implements ActionListener {
         this.add(menu);
         this.add(playAgain);
     }
+    /**
+     * in this metod we do playerWon endScreen
+     */
     public void winnnerIs(Graphics g){
         g.setColor(new Color(0, 173, 238, 255));
         g.setFont(new Font("Ink Free",Font.BOLD,75));
@@ -386,6 +430,10 @@ public class Panel extends JPanel implements ActionListener {
         repaint();
     }
     public class MyKeyAdapter extends KeyAdapter{
+        /**
+         * we get KeyEvent and because you cant go around 180, becasuse then you will die, so this metod prevents it
+         * and then it does the movement and pause thanks to keyEvent
+         */
         @Override
         public void keyPressed(KeyEvent e){
             switch (e.getKeyCode()) {

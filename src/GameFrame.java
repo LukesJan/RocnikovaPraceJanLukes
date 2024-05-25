@@ -31,7 +31,7 @@ public class GameFrame extends JFrame implements ActionListener {
             panel.rv.dispose();
             panel.lv.dispose();
             this.dispose();
-            GameFrame p = new GameFrame();
+            MenuSnake p = new MenuSnake();
         }
     }
 }

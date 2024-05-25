@@ -33,11 +33,17 @@ public class RightFrame extends JFrame {
         this.setLocation(1500, 100);
 
     }
-
+    /**
+     * in there we set score
+     * @param score
+     */
     public void setScore(int score) {
         this.score.setText("Score: " + score);
     }
-
+    /**
+     * in there we set name
+     * @param jmeno
+     */
     public void setJmeno(String jmeno) {
         this.jmeno.setText("Name: " + jmeno);
     }

@@ -26,54 +26,54 @@ public class MenuSlither implements ActionListener {
         nameASK.setBounds(170, 160, 120, 40);
         nameASK.setForeground(new Color(0, 173, 238, 255));
 
-        nameField.setBounds(320, 150, 100, 30);
+        nameField.setBounds(320, 150, 120, 30);
         nameField.setBorder(null);
         nameField.setForeground(new Color(0, 173, 238, 255));
         nameField.setBackground(Color.black);
         nameField.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        nameField2.setBounds(320, 190, 100, 30);
+        nameField2.setBounds(320, 190, 120, 30);
         nameField2.setBorder(null);
         nameField2.setForeground(new Color(0, 173, 238, 255));
         nameField2.setBackground(Color.black);
         nameField2.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        red.setBounds(300, 240,40, 20);
+        red.setBounds(320, 240,50, 20);
         red.setText("RedP1");
         red.setBorder(null);
         red.setForeground(new Color(0, 173, 238, 255));
         red.setBackground(Color.black);
         red.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        green.setBounds(300, 300,40, 20);
+        green.setBounds(320, 300,50, 20);
         green.setText("GreenP1");
         green.setBorder(null);
         green.setForeground(new Color(0, 173, 238, 255));
         green.setBackground(Color.black);
         green.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        blue.setBounds(300, 360,40, 20);
+        blue.setBounds(320, 360,50, 20);
         blue.setText("BlueP1");
         blue.setBorder(null);
         blue.setForeground(new Color(0, 173, 238, 255));
         blue.setBackground(Color.black);
         blue.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        red2.setBounds(370, 240,40, 20);
+        red2.setBounds(390, 240,50, 20);
         red2.setText("RedP2");
         red2.setBorder(null);
         red2.setForeground(new Color(0, 173, 238, 255));
         red2.setBackground(Color.black);
         red2.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        green2.setBounds(370, 300,40, 20);
+        green2.setBounds(390, 300,50, 20);
         green2.setText("GreenP2");
         green2.setBorder(null);
         green2.setForeground(new Color(0, 173, 238, 255));
         green2.setBackground(Color.black);
         green2.setBorder(BorderFactory.createLineBorder(new Color(0, 173, 238, 255)));
 
-        blue2.setBounds(370, 360,40, 20);
+        blue2.setBounds(390, 360,50, 20);
         blue2.setText("BlueP2");
         blue2.setBorder(null);
         blue2.setForeground(new Color(0, 173, 238, 255));
@@ -178,5 +178,8 @@ public class MenuSlither implements ActionListener {
             }
             frame.dispose();
         }
+        /**
+         * in this metod above get rgb but if its invalid then we set it to default(120/240)
+         */
     }
 }

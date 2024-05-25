@@ -14,6 +14,7 @@ public class Menu implements ActionListener {
     JButton buttonSlither = new JButton("Score Slither");
     JButton buttonBoard = new JButton("Score Boards");
     JButton button2v2 = new JButton("Slither.io");
+    JButton buttonControls = new JButton("\u2699");
 
     public Menu() {
 
@@ -45,6 +46,14 @@ public class Menu implements ActionListener {
         button2v2.setBackground(new Color(0, 173, 238, 255));
         button2v2.setForeground(Color.black);
 
+        buttonControls.addActionListener(this);
+        buttonControls.setBounds(420, 160, 20, 20);
+        buttonControls.setFocusable(false);
+        buttonControls.setBorder(null);
+        buttonControls.setForeground(new Color(0, 173, 238, 255));
+        buttonControls.setBackground(Color.black);
+        buttonControls.setFont(new Font("Serif", Font.PLAIN, 20));
+
 
         border.setSize(600, 600);
         border.setIcon(image);
@@ -61,6 +70,7 @@ public class Menu implements ActionListener {
         frame.add(buttonBoard);
         frame.add(button2v2);
         frame.add(buttonSlither);
+        frame.add(buttonControls);
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setLocationRelativeTo(null);
 
@@ -68,10 +78,13 @@ public class Menu implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(buttonControls)) {
+            Controls c = new Controls();
+            frame.dispose();
+        }
         if (e.getSource().equals(start)) {
             MenuSnake mh = new MenuSnake();
             frame.dispose();
-
         }
         if (e.getSource().equals(buttonSlither)) {
             ScoreSlither sl = new ScoreSlither();

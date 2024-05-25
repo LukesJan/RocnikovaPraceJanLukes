@@ -35,9 +35,17 @@ public class LeftFrame extends JFrame{
         this.add(border);
     }
 
+    /**
+     * in there we set score
+     * @param score2
+     */
     public void setScore2(int score2) {
         this.score2.setText("Score: " + score2);
     }
+    /**
+     * in there we set name
+     * @param jmeno2
+     */
     public void setJmeno2(String jmeno2) {
         this.jmeno2.setText("Name: " + jmeno2);
     }
