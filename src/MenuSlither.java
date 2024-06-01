@@ -11,7 +11,7 @@ public class MenuSlither implements ActionListener {
     JLabel border = new JLabel();
     JFrame frame = new JFrame();
     JButton start = new JButton("Start");
-    JButton buttonBoard = new JButton("Score Boards");
+    JButton buttonBoard = new JButton("Score Slither");
     JButton backButton = new JButton("Back");
     JLabel nameASK = new JLabel("Enter your names:");
     JTextField red = new JTextField();
