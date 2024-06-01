@@ -278,12 +278,12 @@ public class Panel extends JPanel implements ActionListener {
             bodyParts++;
             applesEaten++;
             bc.setScore(applesEaten);
-            lv.setScore2(applesEaten2);
             newApple();
         }
         if ((h[0] == appleX && v[0] == appleY)) {
             bodyParts2++;
             applesEaten2++;
+            lv.setScore2(applesEaten2);
             newApple();
         }
     }
