@@ -14,10 +14,6 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-engine/1.8.1/junit-platform-engine-1.8.1.jar" path-in-jar="/" />
-      <element id="file-copy" path="$PROJECT_DIR$/borderJuniorA.png" />
-      <element id="file-copy" path="$PROJECT_DIR$/borderDvaA.png" />
-      <element id="file-copy" path="$PROJECT_DIR$/1v1Rate.txt" />
-      <element id="file-copy" path="$PROJECT_DIR$/Lead.txt" />
     </root>
   </artifact>
 </component>
